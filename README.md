@@ -186,7 +186,7 @@ constructor() {
 `setEmail(email: string): void` - устанавливает и сохраняет электронную почту.\
 `getAllData(): IBuyer` - позволяет получить все данные о покупателе сразу в виде объекта покупателя.\
 `clearCustomerInfo():void` - удаляет все данные о покупателе.\
-`validateField(value: string | null, fieldName: string): { isValid: boolean; errorMessage: string }` - метод проверки полей на пустоту, в параметрах значение поля и имя поля, метод возвращает объект с результатом валидации и сообщением об ошибке.
+`validateField(): {payment?: string; address?: string; phone?: string; email?: string;}` - метод проверки полей на пустоту, возвращает объект, поля которого содержат сообщения об ошибках.
 
 ### Слой коммуникации
 

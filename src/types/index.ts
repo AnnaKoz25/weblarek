@@ -22,11 +22,7 @@ export interface IBuyer {
   address: string;
 }
 
-export interface IOrderRequest {
-  payment: TPayment;
-  email: string;
-  phone: string;
-  address: string;
+export interface IOrderRequest extends IBuyer{
   total: number;
   items: string[];
 }
@@ -34,4 +30,9 @@ export interface IOrderRequest {
 export interface IOrderResult {
   id: string;
   total: number;
+}
+
+export interface IAllProductsResult {
+  total: number; 
+  items: IProduct[];
 }

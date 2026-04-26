@@ -46,29 +46,25 @@ export class Customer {
     this.email = "";
   }
 
-  validateField(
-    value: string | null,
-    fieldName: string,
-  ): { isValid: boolean; errorMessage: string } {
-    let errorText: string = "";
-    let isEmpty = value === null || value === "";
-    switch (fieldName) {
-      case "payment":
-        errorText = "Не выбран вид оплаты";
-        break;
-      case "address":
-        errorText = "Укажите адрес доставки";
-        break;
-      case "phone":
-        errorText = "Укажите номер телефона";
-        break;
-      case "email":
-        errorText = "Укажите адрес электронной почты";
-        break;
+  validateField(): {
+    payment?: string;
+    address?: string;
+    phone?: string;
+    email?: string;
+  } {
+    const errorObj: {[key: string]: string} = {};
+    if (!this.payment) {
+      errorObj.payment = "Не выбран вид оплаты";
     }
-    return {
-      isValid: !isEmpty,
-      errorMessage: isEmpty ? errorText : "",
-    };
+    if (!this.address) {
+      errorObj.address = "Укажите адрес доставки"
+    }
+    if (!this.phone) {
+      errorObj.phone = "Укажите номер телефона"
+    }
+    if (!this.email) {
+      errorObj.email = "Укажите электронную почту"
+    }
+    return errorObj;
   }
 }

@@ -28,13 +28,7 @@ export class Cart {
   }
 
   getTotalPrice(): number {
-    let sum: number = 0;
-    this.purchasesArray.forEach((elem) => {
-      if (elem.price !== null) {
-        sum = sum + elem.price;
-      }
-    });
-    return sum;
+    return this.purchasesArray.reduce((total, item) => total + (item.price || 0), 0);
   }
 
   getQuantityItems(): number {

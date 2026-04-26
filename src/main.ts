@@ -36,22 +36,19 @@ console.log("-----------------------Проверка данных покупат
 console.log("Данные покупателя: ", customer.getAllData())
 customer.setPayment('card');
 console.log("Данные покупателя после добавления типа оплаты ", customer.getAllData());
+console.log("Проверка валидации ", customer.validateField());
 customer.setAddress("Москва");
 console.log("Данные покупателя после добавления адреса доставки ", customer.getAllData());
+console.log("Проверка валидации ", customer.validateField());
 customer.setPhone("123456");
 console.log("Данные покупателя после добавления номера телефона ", customer.getAllData());
+console.log("Проверка валидации ", customer.validateField());
 customer.setEmail("e-mail");
 console.log("Данные покупателя после добавления электронной почты ", customer.getAllData());
-console.log("Проверка выбора оплаты ", customer.validateField(customer.getAllData().payment, "payment"));
-console.log("Проверка адреса ", customer.validateField(customer.getAllData().address, "address"));
-console.log("Проверка номера телефона ", customer.validateField(customer.getAllData().phone, "phone"));
-console.log("Проверка электронной почты ", customer.validateField(customer.getAllData().email, "email"));
+console.log("Проверка валидации ", customer.validateField());
 customer.clearCustomerInfo();
 console.log("Данные покупателя после очистки всех полей ", customer.getAllData());
-console.log("Проверка выбора оплаты после очистки всех данных покупателя ", customer.validateField(customer.getAllData().payment, "payment"));
-console.log("Проверка адреса после очистки всех данных покупателя ", customer.validateField(customer.getAllData().address, "address"));
-console.log("Проверка номера телефона после очистки всех данных покупателя ", customer.validateField(customer.getAllData().phone, "phone"));
-console.log("Проверка электронной почты после очистки всех данных покупателя ", customer.validateField(customer.getAllData().email, "email"));
+console.log("Проверка валидации после очистки всех данных покупателя ", customer.validateField());
 
 const api = new Api(API_URL);
 const larekApi = new BusinessApi(api);
