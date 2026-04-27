@@ -1,5 +1,5 @@
 import { IBuyer } from "../../types";
-import { TPayment } from "../../types";
+import { TPayment, TBuyerErrors } from "../../types";
 
 export class Customer {
   private payment: TPayment | null;
@@ -46,13 +46,8 @@ export class Customer {
     this.email = "";
   }
 
-  validateField(): {
-    payment?: string;
-    address?: string;
-    phone?: string;
-    email?: string;
-  } {
-    const errorObj: {[key: string]: string} = {};
+  validateField(): TBuyerErrors {
+    const errorObj: TBuyerErrors = {};
     if (!this.payment) {
       errorObj.payment = "Не выбран вид оплаты";
     }

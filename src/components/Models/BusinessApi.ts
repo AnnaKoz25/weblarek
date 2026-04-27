@@ -8,8 +8,8 @@ export class BusinessApi {
     this.api = api;
   }
 
-  getAllProducts(): Promise<IProduct[]> {
-    return this.api.get<IAllProductsResult>('/product/').then(result => result.items);
+  getAllProducts(): Promise<IAllProductsResult> {
+    return this.api.get<IAllProductsResult>('/product/');
   }
 
   postOrder(orderInfo: IOrderRequest): Promise<IOrderResult> {

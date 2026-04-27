@@ -54,6 +54,6 @@ const api = new Api(API_URL);
 const larekApi = new BusinessApi(api);
 
 larekApi.getAllProducts().then((result) => {
-    products.setProducts(result);
+    products.setProducts(result.items);
     console.log("Массив товаров из каталога API:", products.getProducts());
 })
