@@ -20,14 +20,12 @@ export class Modal extends Component<IModal> {
 
     this.modalButton.addEventListener("click", () => {
       this.close();
-      this.events.emit("modal:close"); //должно совпадать с обработчиком
     });
 
     this.container.addEventListener('click', (out) => {
-        if(out.target === this.container) {
-            this.close();
-            this.events.emit("modal:close")
-        }
+      if(out.target === this.container) {
+        this.close();
+      }
     });
   }
 
@@ -43,5 +41,6 @@ export class Modal extends Component<IModal> {
   close(): void {
     this.container.classList.remove("modal_active");
     this.modalContainer.innerHTML = "";
+    this.events.emit("modal:close")
   }
 }

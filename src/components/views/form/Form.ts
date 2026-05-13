@@ -29,26 +29,18 @@ export abstract class Form<T extends object = object> extends Component<T> {
 
     this.formElement.addEventListener("submit", (e) => {
       e.preventDefault();
-      const submitData = this.takeData();
-      this.events.emit(`${this.formElement.name}:submit`, submitData);
+      this.events.emit(`${this.formElement.name}:submit`);
     });
 
     this.inputElements.forEach((field) => {
-      field.addEventListener("input", () => {
-        const actualData = this.takeData();
-        this.events.emit(`${this.formElement.name}:change`, actualData);
+      field.addEventListener("input", (el) => {
+        const target = el.target as HTMLInputElement;//привели к типу инпута
+        const { name, value } = target;//значение атрибута и текущий текст
+        if(name) {
+          this.events.emit(`${this.formElement.name}:change`, {[name]: value}); // приводим к обекту, ключ - имя поля, значение - содержимое поля
+        }
       });
     });
-  }
-
-  protected takeData(): Partial<T> {
-    const inputData: Record<string, string> = {};
-    this.inputElements.forEach((element) => {
-      if (element.name) {
-        inputData[element.name] = element.value;
-      }
-    });
-    return inputData as Partial<T>;
   }
 
   set err(value: string) {

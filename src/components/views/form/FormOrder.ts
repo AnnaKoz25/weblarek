@@ -21,28 +21,20 @@ export class FormOrder extends Form<TFormOrder> {
     );
 
     this.buttonPayOnline.addEventListener("click", () => {
-      this.selectPay("card");
+      this.events.emit(`${this.formElement.name}:change`, {payment: "card"});
     });
     this.buttonPayCash.addEventListener("click", () => {
-      this.selectPay("cash");
+      this.events.emit(`${this.formElement.name}:change`, {payment: "cash"});
     });
   }
 
-  private selectPay(pay: "card" | "cash"): void {
+  set payment(pay: "card" | "cash" | null) {
     this.buttonPayOnline.classList.toggle("button_alt-active", pay === "card");
     this.buttonPayCash.classList.toggle("button_alt-active", pay === "cash");
-    this.events.emit(`${this.formElement.name}:change`, this.takeData());
   }
 
-  protected takeData(): Partial<TFormOrder> {
-    const objData = super.takeData() as Partial<TFormOrder>;
-    let pay: "card" | "cash" | null = null;
-    if (this.buttonPayOnline.classList.contains("button_alt-active")) {
-      pay = "card";
-    } else if (this.buttonPayCash.classList.contains("button_alt-active")) {
-      pay = "cash";
-    }
-    objData.payment = pay;
-    return objData;
-  }
+   set address(address: string) {
+    const input = ensureElement<HTMLInputElement>('[name="address"]', this.container);
+      input.value = address;
+   }
 }

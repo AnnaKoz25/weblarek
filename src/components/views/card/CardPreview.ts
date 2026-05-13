@@ -1,11 +1,7 @@
-import { Card } from "./Card";
-import { TCardCatalog } from "./CardCatalog";
-import { IProduct } from "../../../types";
 import { ensureElement } from "../../../utils/utils";
+import { CardCatalogAndPreview } from "./CardCatalogAndPreview";
 
-export type TCardPreview = TCardCatalog & Pick<IProduct, "description">;
-
-export class CardPreview extends Card<TCardPreview> {
+export class CardPreview extends CardCatalogAndPreview {
   protected descriptionElement: HTMLElement;
   protected buyButtonElement: HTMLButtonElement;
   private currentHandler?: () => void;

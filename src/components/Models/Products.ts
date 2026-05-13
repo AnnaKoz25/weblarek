@@ -26,6 +26,7 @@ export class Products {
   }
 
   setSelectedProduct(product: IProduct): void {
+    this.events?.emit("selectProduct:change", { product })
     this.selectedProduct = product;
   }
 

@@ -1,14 +1,11 @@
-import { IProduct } from "../../../types";
-import { Card } from "./Card";
-import { TCard } from "./Card";
+import { CardCatalogAndPreview } from "./CardCatalogAndPreview";
+
 
 interface ICardActions {
   onClick: () => void;
 }
 
-export type TCardCatalog = TCard & Pick<IProduct, "image" | "category">;
-
-export class CardCatalog extends Card<TCardCatalog> {
+export class CardCatalog extends CardCatalogAndPreview {
 
   constructor(container: HTMLElement, actions?: ICardActions) {
     super(container);
