@@ -8,6 +8,7 @@ export type TFormOrder = Pick<IBuyer, "payment" | "address">;
 export class FormOrder extends Form<TFormOrder> {
   protected buttonPayOnline: HTMLButtonElement;
   protected buttonPayCash: HTMLButtonElement;
+  protected addressInput: HTMLInputElement;
 
   constructor(container: HTMLElement, events: IEvents) {
     super(container, events);
@@ -19,6 +20,8 @@ export class FormOrder extends Form<TFormOrder> {
       'button[name="cash"]',
       this.container,
     );
+
+    this.addressInput = ensureElement<HTMLInputElement>('[name="address"]', this.container);
 
     this.buttonPayOnline.addEventListener("click", () => {
       this.events.emit(`${this.formElement.name}:change`, {payment: "card"});
@@ -34,7 +37,6 @@ export class FormOrder extends Form<TFormOrder> {
   }
 
    set address(address: string) {
-    const input = ensureElement<HTMLInputElement>('[name="address"]', this.container);
-      input.value = address;
+    this.addressInput.value = address;
    }
 }
